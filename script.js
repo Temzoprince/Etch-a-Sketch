@@ -50,3 +50,18 @@ for (i = 1; i <= columns.length; i++) {
     });
   }
 }
+
+let changeGridSizeBtn = document.querySelector(".changeBtn");
+
+changeGridSizeBtn.addEventListener("click", () => {
+  let chooseNumber = true;
+
+  while (chooseNumber) {
+    var number = prompt("New Grid Size? num X num - num <= 100");
+    if (number <= 100) {
+      chooseNumber = false;
+    }
+  }
+  console.log(number);
+  console.log(typeof number);
+});
