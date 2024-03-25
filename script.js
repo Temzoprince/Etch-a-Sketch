@@ -53,15 +53,19 @@ for (i = 1; i <= columns.length; i++) {
 
 let changeGridSizeBtn = document.querySelector(".changeBtn");
 
-changeGridSizeBtn.addEventListener("click", () => {
-  let chooseNumber = true;
+let changeGrid = false;
+let number = 0;
 
-  while (chooseNumber) {
-    var number = prompt("New Grid Size? num X num - num <= 100");
-    if (number <= 100) {
-      chooseNumber = false;
-    }
+changeGridSizeBtn.addEventListener("click", () => {
+
+  let number = prompt("New Grid Size? num X num - num <= 100");
+  number = Number(number);
+
+  const container = document.querySelector(".container");
+  let allGridDiv = container.getElementsByTagName('*');
+  for(var i = 0; i < allGridDiv.length; i++) {
+    allGridDiv[i].removeAttribute('style');
   }
-  console.log(number);
-  console.log(typeof number);
+
+  console.log('Finished 1')
 });
