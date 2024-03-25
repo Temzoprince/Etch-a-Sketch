@@ -31,3 +31,19 @@ for (i = 1; i < columns.length; i++) {
     }
     
 }
+
+
+// Div changes background color upon hover state
+for (i = 1; i < columns.length; i++) {
+
+    currentColumn = document.querySelector(`.col${i}`)
+    for (j = 1; j < columns.length; j++) {
+        let currentCell = currentColumn.querySelector(`.row${j}`)
+        // Hovering over each div change background color
+        currentCell.addEventListener("mouseenter", (e) => {
+            console.log(e)
+            currentCell.style.background = "#555555";
+        })
+    }
+    
+}
