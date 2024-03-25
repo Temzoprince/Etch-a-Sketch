@@ -39,17 +39,24 @@ const columns = document.querySelectorAll(".container > *");
 console.log(columns.length);
 
 // Div changes background color upon hover state
-for (i = 1; i <= columns.length; i++) {
-  currentColumn = document.querySelector(`.col${i}`);
-  for (j = 1; j <= columns.length; j++) {
-    let currentCell = currentColumn.querySelector(`.row${j}`);
-    // Hovering over each div change background color
-    currentCell.addEventListener("mouseenter", (e) => {
-      console.log(e);
-      currentCell.style.background = "#555555";
-    });
+function changeGridBackground(gridLength, color) {
+  for (i = 1; i <= gridLength; i++) {
+    currentColumn = document.querySelector(`.col${i}`);
+    for (j = 1; j <= gridLength; j++) {
+      let currentCell = currentColumn.querySelector(`.row${j}`);
+      // Hovering over each div change background color
+      currentCell.addEventListener("mouseenter", (e) => {
+        console.log(e);
+        currentCell.style.background = `${color}`;
+      });
+    }
   }
 }
+
+// columns.length
+// #555555
+changeGridBackground(columns.length, "#555555");
+
 
 let changeGridSizeBtn = document.querySelector(".changeBtn");
 
@@ -57,15 +64,24 @@ let changeGrid = false;
 let number = 0;
 
 changeGridSizeBtn.addEventListener("click", () => {
-
   let number = prompt("New Grid Size? num X num - num <= 100");
   number = Number(number);
 
+  // remove background color of grid
   const container = document.querySelector(".container");
-  let allGridDiv = container.getElementsByTagName('*');
-  for(var i = 0; i < allGridDiv.length; i++) {
-    allGridDiv[i].removeAttribute('style');
+  let allGridDiv = container.getElementsByTagName("*");
+  for (var i = 0; i < allGridDiv.length; i++) {
+    allGridDiv[i].removeAttribute("style");
   }
 
-  console.log('Finished 1')
+  // remove the grid
+  container.replaceChildren()
+
+  // add new grid + hover background effect
+  createGrid(number);
+
+  newColumns = document.querySelectorAll(".container > *")
+  changeGridBackground(newColumns.length, "#555555")
+
+  console.log("Finished 1");
 });
