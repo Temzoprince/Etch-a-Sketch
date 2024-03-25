@@ -7,7 +7,7 @@ const container = document.querySelector('.container')
  */
 
 // Columns section - Create the number of columns needed for the grid
-for (i = 1; i <= 4; i++) {
+for (i = 1; i <= 16; i++) {
     let div = document.createElement('div')
     div.classList.add(`col${i}`)
     container.appendChild(div);
