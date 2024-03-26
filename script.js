@@ -67,10 +67,31 @@ function changeGridBackgroundRandom(gridLength) {
         // currentCell.style.background = `#${randomColor}`;
 
         // Randomizing cell color with rgb
-        const randomR = Math.floor(Math.random()*256).toString();
-        const randomG = Math.floor(Math.random()*256).toString();
-        const randomB = Math.floor(Math.random()*256).toString();
+        const randomR = Math.floor(Math.random() * 256).toString();
+        const randomG = Math.floor(Math.random() * 256).toString();
+        const randomB = Math.floor(Math.random() * 256).toString();
         currentCell.style.background = `rgb(${randomR}, ${randomG}, ${randomB})`;
+      });
+    }
+  }
+}
+
+function changeGridBackgroundDarken(gridLength) {
+  for (i = 1; i <= gridLength; i++) {
+    currentColumn = document.querySelector(`.col${i}`);
+    for (j = 1, cellOpacity = 0; j <= gridLength; j++) {
+      let currentCell = currentColumn.querySelector(`.row${j}`);
+      // Hovering over each div change background color
+      currentCell.addEventListener("mouseenter", (e) => {
+        console.log(e);
+
+        // Color is set to black
+        currentCell.style.background = `rgb(0, 0, 0)`;
+        console.log(cellOpacity)
+        currentCell.style.opacity = cellOpacity;
+        if (cellOpacity < 1) {
+          cellOpacity = cellOpacity + 0.1;
+        }
       });
     }
   }
@@ -80,7 +101,6 @@ function changeGridBackgroundRandom(gridLength) {
 // #555555
 // changeGridBackground(columns.length, "#555555");
 changeGridBackground(columns.length, "#555555");
-
 
 let changeGridSizeBtn = document.querySelector(".changeBtn");
 
@@ -99,14 +119,15 @@ changeGridSizeBtn.addEventListener("click", () => {
   }
 
   // remove the grid
-  container.replaceChildren()
+  container.replaceChildren();
 
   // add new grid + hover background effect
   createGrid(number);
 
-  let newColumns = document.querySelectorAll(".container > *")
+  let newColumns = document.querySelectorAll(".container > *");
   // changeGridBackground(newColumns.length, "#555555")
-  changeGridBackgroundRandom(newColumns.length)
+  // changeGridBackgroundRandom(newColumns.length);
+  changeGridBackgroundDarken(newColumns.length);
 
   console.log("Finished 1");
 });
