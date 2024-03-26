@@ -53,8 +53,32 @@ function changeGridBackground(gridLength, color) {
   }
 }
 
+function changeGridBackgroundRandom(gridLength) {
+  for (i = 1; i <= gridLength; i++) {
+    currentColumn = document.querySelector(`.col${i}`);
+    for (j = 1; j <= gridLength; j++) {
+      let currentCell = currentColumn.querySelector(`.row${j}`);
+      // Hovering over each div change background color
+      currentCell.addEventListener("mouseenter", (e) => {
+        console.log(e);
+
+        // Randomizing cell color with hexadecimal
+        // const randomColor = Math.floor(Math.random()*16777215).toString(16);
+        // currentCell.style.background = `#${randomColor}`;
+
+        // Randomizing cell color with rgb
+        const randomR = Math.floor(Math.random()*256).toString();
+        const randomG = Math.floor(Math.random()*256).toString();
+        const randomB = Math.floor(Math.random()*256).toString();
+        currentCell.style.background = `rgb(${randomR}, ${randomG}, ${randomB})`;
+      });
+    }
+  }
+}
+
 // columns.length
 // #555555
+// changeGridBackground(columns.length, "#555555");
 changeGridBackground(columns.length, "#555555");
 
 
@@ -80,8 +104,9 @@ changeGridSizeBtn.addEventListener("click", () => {
   // add new grid + hover background effect
   createGrid(number);
 
-  newColumns = document.querySelectorAll(".container > *")
-  changeGridBackground(newColumns.length, "#555555")
+  let newColumns = document.querySelectorAll(".container > *")
+  // changeGridBackground(newColumns.length, "#555555")
+  changeGridBackgroundRandom(newColumns.length)
 
   console.log("Finished 1");
 });
