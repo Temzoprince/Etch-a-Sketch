@@ -33,6 +33,9 @@ function createGrid(gridSize) {
   }
 }
 
+/**
+ * Create initial Grid 16x16
+ */
 createGrid(16);
 
 const columns = document.querySelectorAll(".container > *");
@@ -97,15 +100,17 @@ function changeGridBackgroundDarken(gridLength) {
   }
 }
 
-// columns.length
-// #555555
-// changeGridBackground(columns.length, "#555555");
+/**
+ * Change initial Grid background to greyish color
+ */
 changeGridBackground(columns.length, "#555555");
 
-let changeGridSizeBtn = document.querySelector(".changeBtn");
 
-let changeGrid = false;
-let number = 0;
+/**
+ * Button to Change the grid with the same color as the beginning
+ */
+
+let changeGridSizeBtn = document.querySelector(".changeBtn");
 
 changeGridSizeBtn.addEventListener("click", () => {
   let number = prompt("New Grid Size? num X num - num <= 100");
@@ -125,9 +130,62 @@ changeGridSizeBtn.addEventListener("click", () => {
   createGrid(number);
 
   let newColumns = document.querySelectorAll(".container > *");
-  // changeGridBackground(newColumns.length, "#555555")
-  // changeGridBackgroundRandom(newColumns.length);
-  changeGridBackgroundDarken(newColumns.length);
 
-  console.log("Finished 1");
+  changeGridBackground(newColumns.length, "#555555")
+});
+
+/**
+ * Button to Randomize the Colors of the grid
+ */
+
+let changeGridBtnRandomColor = document.querySelector(".changeBtnRandom");
+
+changeGridBtnRandomColor.addEventListener("click", () => {
+  let number = prompt("New Grid Size? num X num - num <= 100");
+  number = Number(number);
+
+  // remove background color of grid
+  const container = document.querySelector(".container");
+  let allGridDiv = container.getElementsByTagName("*");
+  for (var i = 0; i < allGridDiv.length; i++) {
+    allGridDiv[i].removeAttribute("style");
+  }
+
+  // remove the grid
+  container.replaceChildren();
+
+  // add new grid + hover background effect
+  createGrid(number);
+
+  let newColumns = document.querySelectorAll(".container > *");
+
+  changeGridBackgroundRandom(newColumns.length);
+});
+
+/**
+ * Button to Progressively Darken the grid
+ */
+
+let changeGridBtnDarkenColor = document.querySelector(".changeBtnDarken");
+
+changeGridBtnDarkenColor.addEventListener("click", () => {
+  let number = prompt("New Grid Size? num X num - num <= 100");
+  number = Number(number);
+
+  // remove background color of grid
+  const container = document.querySelector(".container");
+  let allGridDiv = container.getElementsByTagName("*");
+  for (var i = 0; i < allGridDiv.length; i++) {
+    allGridDiv[i].removeAttribute("style");
+  }
+
+  // remove the grid
+  container.replaceChildren();
+
+  // add new grid + hover background effect
+  createGrid(number);
+
+  let newColumns = document.querySelectorAll(".container > *");
+
+  changeGridBackgroundDarken(newColumns.length);
 });
